@@ -1,0 +1,30 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "this is developer-tinder project",
+  "keywords": [
+    "javascript",
+    "node",
+    "express",
+    "mongoDB"
+  ],
+  "homepage": "https://github.com/Ritik220519/tinder-dev#readme",
+  "bugs": {
+    "url": "https://github.com/Ritik220519/tinder-dev/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ritik220519/tinder-dev.git"
+  },
+  "license": "ISC",
+  "author": "Ritik",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev" : "nodemon index.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
