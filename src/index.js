@@ -1,24 +1,54 @@
 const express = require("express");
-
+const connectToDatabase = require("./config/database");
+const User = require("./models/user");
 
 const app = express();
 
+app.post("/signup", async (req, res) => {
+//   const {
+//     firstName,
+//     lastName,
+//     emailId,
+//     password,
+//     age,
+//     gender,
+//     photoURL,
+//     about,
+//   } = req.body;
 
-app.get("/user" , (req, res)=>{
-    res.send("data fetch from user")
-})
-app.post("/user" , (req,res)=>{
-    res.send("database saved successfully!")
-})
-app.delete("/user" , (req , res)=>{
-    res.send("data deleted successfully!")
-})
+  try {
+    const newUser = new User({
+      //   firstName : firstName,
+      //    lastName : lastName,
+      //   emailId : emailId,
+      //   password : password,
+      //   age : age,
+      //   gender : gender,
+      //   photoURL : photoURL,
+      //   about : about,
 
-app.use("/test" , (req, res)=>{
-    res.send("Hello from test");
-})
-
-
-app.listen(3528 , ()=>{
-    console.log("server is running on port 3528")
+      firstName: "Ritik",
+      lastName: "Srivastava",
+      emailId: "Ritik@gmail.com",
+      password: "Ritik@21",
+      age: 24,
+      gender: "Male",
+      about: "This side Ritik",
+    });
+    await newUser.save();
+    res.send("User created successfully!");
+  } catch (error) {
+    return res.status(500).send("Error creating user: " + error.message);
+  }
 });
+
+connectToDatabase()
+  .then(() => {
+    console.log("Database connected successfully!");
+    app.listen(3528, () => {
+      console.log("server is running on port 3528");
+    });
+  })
+  .catch((err) => {
+    console.log("Database connection failed : ", err);
+  });
