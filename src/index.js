@@ -4,37 +4,33 @@ const User = require("./models/user");
 
 const app = express();
 
+app.use(express.json());
+
 app.post("/signup", async (req, res) => {
-//   const {
-//     firstName,
-//     lastName,
-//     emailId,
-//     password,
-//     age,
-//     gender,
-//     photoURL,
-//     about,
-//   } = req.body;
+  const {
+    firstName,
+    lastName,
+    emailId,
+    password,
+    age,
+    gender,
+    photoURL,
+    about,
+  } = req.body;
 
   try {
     const newUser = new User({
-      //   firstName : firstName,
-      //    lastName : lastName,
-      //   emailId : emailId,
-      //   password : password,
-      //   age : age,
-      //   gender : gender,
-      //   photoURL : photoURL,
-      //   about : about,
+        firstName : firstName,
+         lastName : lastName,
+        emailId : emailId,
+        password : password,
+        age : age,
+        gender : gender,
+        photoURL : photoURL,
+        about : about,
 
-      firstName: "Ritik",
-      lastName: "Srivastava",
-      emailId: "Ritik@gmail.com",
-      password: "Ritik@21",
-      age: 24,
-      gender: "Male",
-      about: "This side Ritik",
     });
+    console.log(req.body)
     await newUser.save();
     res.send("User created successfully!");
   } catch (error) {
